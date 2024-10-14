@@ -20,6 +20,7 @@ public class AACMappings implements AACPage {
 
 	AssociativeArray<String, AACCategory> categories;
 	AACCategory category;
+	AACCategory currcategory;
 
 	///////////////// CONSTRUCTOR///////////////////////
 
@@ -40,8 +41,10 @@ public class AACMappings implements AACPage {
 	 */
 	public AACMappings(String filename) {
 
-		this.category = null;// change this back when done with debugging.
+		this.category = null;
 		this.categories = new AssociativeArray<String, AACCategory>();
+		this.currcategory = null;
+		
 
 		Scanner scanner = null;
 
@@ -57,11 +60,13 @@ public class AACMappings implements AACPage {
 						AACCategory category1 = new AACCategory(pairs[1]);
 						this.categories.set(pairs[0], category1);
 						this.category = category1;
+						this.currcategory = category1;
+
 					} else // if (currLine.charAt(0) == '>')
 					 {
 						String[] pairs = currLine.substring(1).split(" ", 2);
-						if (this.category != null) {
-							this.category.addItem(pairs[0], pairs[1]);
+						if (this.currcategory != null) {
+							this.currcategory.addItem(pairs[0], pairs[1]);
 						}
 					}
 					if (this.category != null) {
@@ -122,8 +127,14 @@ public class AACMappings implements AACPage {
 		// if (this.category == null){
 		// 	return new String[0];
 		// }
-		return this.categories.getKeyArray();
-		//return this.category.getImageLocs();
+		// return this.categories.getKeyArray();
+		// //return this.category.getImageLocs();
+
+		if (this.category != null){
+			return this.category.getImageLocs();
+		}
+
+		return new String[0];
 	}
 
 	/**
