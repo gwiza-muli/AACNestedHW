@@ -50,6 +50,9 @@ public class AACCategory implements AACPage {
 	 * it should return an empty array
 	 */
 	public String[] getImageLocs() {
+		if (this.pairs.size() == 0){
+			return new String[0];
+		}
 		return this.pairs.getKeyArray();
 	} //getImageLocs
 
