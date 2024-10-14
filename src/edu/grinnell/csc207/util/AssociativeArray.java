@@ -204,9 +204,10 @@ public class AssociativeArray<K, V> {
   } // size()
 
   @SuppressWarnings("unchecked")
-  public K[] getKeyArray() {
+  
+  public String[] getKeyArray() {
     if (this.size == 0) {
-      return null;
+      return new String[0];
     }
 
     int keysLength = 0;
@@ -216,12 +217,12 @@ public class AssociativeArray<K, V> {
       }
     }
 
-    K[] keysArr = (K[]) new Object[keysLength];
+    String[] keysArr = new String[keysLength];
 
-
+     int keyIndex = 0;
     for (int x = 0; x < this.pairs.length; x++) {
       if (pairs[x] != null) {
-        keysArr[x++] = pairs[x].key;
+        keysArr[keyIndex++] = (String) pairs[x].key;
       }
     }
 
