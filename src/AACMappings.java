@@ -52,8 +52,8 @@ public class AACMappings implements AACPage {
 			 scanner = new Scanner(new File(filename));
 			while (scanner.hasNextLine()) {
 
-				String currLine = scanner.nextLine().trim();
-
+				//String currLine = scanner.nextLine().trim();
+				String currLine = scanner.nextLine();
 				if (!currLine.isEmpty()) {
 					if (currLine.charAt(0) != '>') {
 						String[] pairs = currLine.split(" ", 2);
@@ -134,7 +134,8 @@ public class AACMappings implements AACPage {
 			return this.category.getImageLocs();
 		}
 
-		return new String[0];
+		//return new String[0];
+		return this.categories.getKeyArray();
 	}
 
 	/**
