@@ -42,7 +42,8 @@ public class AACMappings implements AACPage {
 	public AACMappings(String filename) {
 
 		
-		this.categories = new AssociativeArray<String, AACCategory>();
+		//this.categories = new AssociativeArray<String, AACCategory>();
+		this.categories = new AssociativeArray<>();
 		this.category = null;
 		
 
@@ -64,8 +65,10 @@ public class AACMappings implements AACPage {
 
 					} else // if (currLine.charAt(0) == '>')
 					 {
-						String[] pairs = currLine.substring(1).split(" ", 2);
+						 String[] pairs = currLine.substring(1).split(" ", 2);
 						if (this.category != null) {
+							
+
 							this.category.addItem(pairs[0], pairs[1]);
 						}
 					}
