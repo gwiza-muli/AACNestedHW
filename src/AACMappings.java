@@ -20,7 +20,7 @@ public class AACMappings implements AACPage {
 
 	AssociativeArray<String, AACCategory> categories;
 	AACCategory category;
-	AACCategory currcategory;
+	
 
 	///////////////// CONSTRUCTOR///////////////////////
 
@@ -41,15 +41,15 @@ public class AACMappings implements AACPage {
 	 */
 	public AACMappings(String filename) {
 
-		this.category = null;
+		
 		this.categories = new AssociativeArray<String, AACCategory>();
-		this.currcategory = null;
+		this.category = null;
 		
 
 		Scanner scanner = null;
 
 		try {
-			scanner = new Scanner(new File(filename));
+			 scanner = new Scanner(new File(filename));
 			while (scanner.hasNextLine()) {
 
 				String currLine = scanner.nextLine().trim();
@@ -59,21 +59,21 @@ public class AACMappings implements AACPage {
 						String[] pairs = currLine.split(" ", 2);
 						AACCategory category1 = new AACCategory(pairs[1]);
 						this.categories.set(pairs[0], category1);
-						this.category = category1;
-						this.currcategory = category1;
+						 //this.category = category1;
+						// this.currcategory = category1;
 
 					} else // if (currLine.charAt(0) == '>')
 					 {
 						String[] pairs = currLine.substring(1).split(" ", 2);
-						if (this.currcategory != null) {
-							this.currcategory.addItem(pairs[0], pairs[1]);
+						if (this.category != null) {
+							this.category.addItem(pairs[0], pairs[1]);
 						}
 					}
-					if (this.category != null) {
-						if (this.category.getImageLocs().length == 0) {
-							this.category = null;
-						}
-					}
+					// if (this.category != null) {
+					// 	if (this.category.getImageLocs().length == 0) {
+					// 		this.category = null;
+					// 	}
+					// }
 
 				}
 			}
