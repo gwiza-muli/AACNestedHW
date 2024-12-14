@@ -4,6 +4,7 @@ import java.util.NoSuchElementException;
 import java.io.PrintWriter;
 import edu.grinnell.csc207.util.AssociativeArray;
 import edu.grinnell.csc207.util.KeyNotFoundException;
+import edu.grinnell.csc207.util.NullKeyException;
 
 /**
  * Creates a set of mappings of an AAC that has two levels, one for categories and then within each
@@ -46,6 +47,14 @@ public class AACMappings implements AACPage {
 		this.categories = new AssociativeArray<>();
 		this.category = null;
 		
+		AACCategory homeCategory = new AACCategory("Home");
+		try {
+			this.categories.set("img/home.png", homeCategory);
+		} catch (NullKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.category = homeCategory;
 
 		Scanner scanner = null;
 
@@ -60,7 +69,7 @@ public class AACMappings implements AACPage {
 						String[] pairs = currLine.split(" ", 2);
 						AACCategory category1 = new AACCategory(pairs[1]);
 						this.categories.set(pairs[0], category1);
-						 //this.category = category1;
+						this.category = category1; //-----------------------------------
 						// this.currcategory = category1;
 
 					} else // if (currLine.charAt(0) == '>')
